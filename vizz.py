@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 # Utility for visualizing 3D Data using blender
-def visualize3D(voxel_data, title='Voxel_Data', thresh=-1.0, percentile=0.8):
+def visualize3D(voxel_data, title='Voxel_Data', thresh=-1.0, percentile=0.8, plot=True):
     filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images/' + title + '.png')
     if thresh < 0:
         ordered_data = voxel_data.copy().reshape(-1)
@@ -38,5 +38,7 @@ def visualize3D(voxel_data, title='Voxel_Data', thresh=-1.0, percentile=0.8):
     process = subprocess.Popen(blender_arguments)
     process.wait()
 
-    img = plt.imread(filename)
-    plt.imshow(img)
+    if plot:
+        img = plt.imread(filename)
+        plt.imshow(img)
+
